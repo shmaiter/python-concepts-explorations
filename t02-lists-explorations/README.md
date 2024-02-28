@@ -1,0 +1,1 @@
+On this repository I'll be uploading my python personal challenges and explorations over matrix, lists and how to work with them.
