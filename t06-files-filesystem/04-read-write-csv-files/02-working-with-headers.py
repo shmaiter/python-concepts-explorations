@@ -1,6 +1,6 @@
-from pathlib import Path
 import csv
 import re
+from pathlib import Path
 
 people = [
     {"name": "Veronica", "age": 29},
@@ -20,6 +20,7 @@ def is_float(s):
 # *********************************************** 2nd APPROACH -> WRITING
 file_path = Path.cwd() / "people.csv"
 with file_path.open(mode="w", encoding="utf-8", newline="\n") as file:
+
     writer = csv.DictWriter(file, fieldnames=people[0].keys())
     writer.writeheader()
     writer.writerows(people)
