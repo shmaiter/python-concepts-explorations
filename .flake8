@@ -12,6 +12,8 @@ ignore =
     E501
     # Line break before binary operatory (black artifact)
     W503
+    # Continuation line under-indented for visual indent
+    E128
 
 exclude = 
     .git
