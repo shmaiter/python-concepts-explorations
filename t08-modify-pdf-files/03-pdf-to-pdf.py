@@ -38,3 +38,13 @@ from pathlib import Path
 # new_pdf_path = Path.cwd() / "first_chapter.pdf"
 # with new_pdf_path.open(mode="wb") as output_file:
 #     pdf_writer.write(output_file)
+
+
+# ******************************************* FOURTH *******************************************
+# Using shortcut for copying and entire pdf
+pdf_path = Path.cwd() / "Pride_and_Prejudice.pdf"
+pdf_reader = PdfReader(str(pdf_path))
+pdf_writer = PdfWriter()
+pdf_writer.append_pages_from_reader(pdf_reader)
+with Path("Pride_and_Prejudice_copy.pdf").open(mode="wb") as output_file:
+    pdf_writer.write(output_file)
