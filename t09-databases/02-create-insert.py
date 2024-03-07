@@ -11,26 +11,26 @@ people_values = (
 # ************************************************** Method #2 **************************************************
 with sqlite3.connect("test_database.db") as connection:
     cursor = connection.cursor()
-    cursor.execute("DROP TABLE IF EXISTS People;")
+    # cursor.execute("DROP TABLE IF EXISTS People;")
 
-    # instead of multiple "cursor.execute()" use instead "cursor.executescript()"
-    cursor.executescript("""
-        CREATE TABLE People(
-            FirstName TEXT,
-            LastName TEXT,
-            Age INT
-        );
+    # # instead of multiple "cursor.execute()" use instead "cursor.executescript()"
+    # cursor.executescript("""
+    #     CREATE TABLE People(
+    #         FirstName TEXT,
+    #         LastName TEXT,
+    #         Age INT
+    #     );
+    # """)
 
-        INSERT INTO People VALUES(
-                'Maria',
-                'Bertilia',
-                49
-            );
-    """)
+    # # passing values from variables, parameterized statement
+    # cursor.executemany("INSERT INTO People VALUES(?, ?, ?)", people_values)
 
-    # passing values from variables, parameterized statement
-    cursor.executemany("INSERT INTO People VALUES(?, ?, ?)", people_values)
+    # cursor.execute(
+    #     "UPDATE People SET Age=? WHERE FirstName=? AND LastName=?;",
+    #     (45, "Luigi", "Vercotti"),
+    # )
 
+    # independant executions
     # cursor.execute(
     #     """CREATE TABLE People(
     #     FirstName TEXT,
@@ -48,6 +48,11 @@ with sqlite3.connect("test_database.db") as connection:
     #     );
     #     """
     # )
+
+    response = cursor.execute("SELECT FirstName, LastName FROM People WHERE Age > 30;")
+
+    for row in response.fetchall():  # returns a Tuple
+        print(row)
 
 
 # ************************************************** Method #1 **************************************************
